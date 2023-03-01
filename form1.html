@@ -1,0 +1,92 @@
+<html>
+<head>
+<title>Registration Form</title>
+</head>
+<body>
+<center >
+<h2 >Registration Form</h2>
+<form name="registration-form" onsubmit="return validateForm()">
+<table>
+<tr>
+</tr>
+<tr>
+<td>Full Name:</td>
+<td><input type="text" name="full-name" required></td>
+</tr>
+<tr>
+<td>Mobile:</td>
+<td><input type="tel" name="mobile" id="" required></td>
+</tr>
+<tr>
+<td>Email:</td>
+<td><input type="email" name="email" required></td>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input type="password" name="password" required></td>
+</tr>
+<tr>
+<td>Confirm Password:</td>
+<td><input type="password" name="confirm-password" required></td>
+</tr>
+<tr>
+<td>Address</td>
+<td><input type="text" name="address"></td>
+</tr>
+<tr>
+<td>State:</td>
+<td><input type="text" name="state"></td>
+</tr>
+<tr>
+<td>Gender:</td>
+<td>
+<label><input type="radio" name="gender" value="male"> Male</label>
+<label><input type="radio" name="gender" value="female"> Female</label>
+<label><input type="radio" name="gender" value="other"> Other</label>
+</td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" name="sumbit">
+</td></table>
+</form> </center> 
+</body>
+</html>
+<script>
+function validateForm() {
+var fullName = document.forms["registration-form"]["full-name"].value;
+var email = document.forms["registration-form"]["email"].value;
+var mobile=document.forms["registration-form"]["mobile"].value;
+var mobilenew=/^[1-9]\d{9}$/;
+var password = document.forms["registration-form"]["password"].value;
+var confirmPassword = document.forms["registration-form"]["confirm-password"].value;
+var age = document.forms["registration-form"]["age"].value;
+if (fullName == "") {
+  alert("Please enter your full name");
+  return false;
+}
+ var emailnew = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (email == "" || !emailnew.test(email)) {
+  alert("Please enter  your valid  email");
+  return false;
+}
+if(mobile==""||!mobilenew.test(mobile))
+{
+  alert("valid mobile number");
+  return false;
+}
+if (password == "" || password.length < 8) {
+  alert("Please enter a password with at least 8 characters");
+  return false;
+}
+if (confirmPassword == "" || confirmPassword != password) {
+  alert("Please confirm your password");
+  return false;
+}
+if (age == "" || isNaN(age)) {
+  alert("Please enter a valid age");
+  return false;
+}
+alert("Form submitted successfully");
+return true;
+}
+</script>        
