@@ -1,60 +1,7 @@
-<link rel="stylesheet" href="style.css">
-<div id="table-container"></div>
-
-<script>
-  var directories ={"newFOlder": {"index.html": 203, "Subfolder": 0}};
-  let table = document.createElement("table");
-
-  let headerRow = table.insertRow();
-  let headerCell1 = headerRow.insertCell(0);
-  let headerCell2 = headerRow.insertCell(1);
-  let headerCell3 = headerRow.insertCell(2);
-  let headerCell4 = headerRow.insertCell(3);
-  headerCell1.innerHTML = "No";
-  headerCell2.innerHTML = "Name";
-  headerCell3.innerHTML = "Size";
-  headerCell4.innerHTML = "";
-
-
-  for(let dir in directories)
-  {
-    let row = table.insertRow();
-     row.classList.add("directory");
-     let cell1 = row.insertCell(0);
-     cell1.innerHTML = dir;
-     cell1.colSpan = "4";
-    var fileIndex =1;
-    for(let key in directories[dir])
-    {
-     console.log(key);
-     let row = table.insertRow();
-     row.classList.add("file");
-     let cell1 = row.insertCell(0);
-     let cell2 = row.insertCell(1);
-     let cell3 = row.insertCell(2);
-     let cell4 = row.insertCell(3);
-     cell1.innerHTML = fileIndex++;
-     cell2.innerHTML = key;
-     cell3.innerHTML = bytesToKB(directories[dir][key]) + " kb";
-     cell4.innerHTML = '<a href="'+ dir +"/"+ key+'"><button>Open</button></a>';
-    }
-  } 
-
-  function bytesToKB(bytes) {
-  return (bytes / 1024).toFixed(2);
-  } 
-   let lastrow = table.insertRow();
-   let singleCell = lastrow.insertCell();
-   singleCell.setAttribute('colspan', 4);
-   singleCell.style.textAlign = 'center';
-   singleCell.innerHTML = '<button>Back</button>';
-
-   document.getElementById("table-container").appendChild(table);
-</script>
-
-
-
-/* Apply styles to the table */
+<!DOCTYPE html>
+<html>
+<head>
+<style>
 h1{
     text-align: center;
     font-weight: bolder;
@@ -67,40 +14,40 @@ table {
     width: 80%;
     max-width: 800px;
     font-size: 1.2rem;
-  }
-  .directory{
+}
+.directory {
     background-color: #4CAF50;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
-  }
-  
-  /* Apply alternating background colors to table rows */
-  .file:nth-child(even) {
+}
+
+/* Apply alternating background colors to table rows */
+.file:nth-child(even) {
     background-color: #ececec;
-  }
-  
-  /* Apply hover effect to table rows */
-  .file:hover {
+}
+
+/* Apply hover effect to table rows */
+.file:hover {
     background-color: #e2e2e2;
     cursor: pointer;
-  }
-  
-  /* Apply styles to table cells */
-  td, th {
+}
+
+/* Apply styles to table cells */
+td, th {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: left;
-  }
-  
-  /* Apply styles to table header cells */
-  th {
+}
+
+/* Apply styles to table header cells */
+th {
     background-color: #555;
     color: #fff;
-  }
-  
-  /* Apply styles to action buttons */
-  button {
+}
+
+/* Apply styles to action buttons */
+button {
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -111,8 +58,66 @@ table {
     font-size: 15px;
     border-radius: 4px;
     cursor: pointer;
-  }
-  /* Apply hover effect to action buttons */
-  button:hover {
+}
+
+/* Apply hover effect to action buttons */
+button:hover {
     background-color: #3e8e41;
-  }
+}
+</style>
+</head>
+<body>
+<h1>File Explorer</h1>
+<div id="table-container"></div>
+
+<script>
+var directories ={"newFOlder": {"index.html": 203, "Subfolder": 0}};
+let table = document.createElement("table");
+
+let headerRow = table.insertRow();
+let headerCell1 = headerRow.insertCell(0);
+let headerCell2 = headerRow.insertCell(1);
+let headerCell3 = headerRow.insertCell(2);
+let headerCell4 = headerRow.insertCell(3);
+headerCell1.innerHTML = "No";
+headerCell2.innerHTML = "Name";
+headerCell3.innerHTML = "Size";
+headerCell4.innerHTML = "";
+
+
+for (let dir in directories) {
+    let row = table.insertRow();
+    row.classList.add("directory");
+    let cell1 = row.insertCell(0);
+    cell1.innerHTML = dir;
+    cell1.colSpan = "4";
+    var fileIndex = 1;
+    for (let key in directories[dir]) {
+        console.log(key);
+        let row = table.insertRow();
+        row.classList.add("file");
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        cell1.innerHTML = fileIndex++;
+        cell2.innerHTML = key;
+        cell3.innerHTML = bytesToKB(directories[dir][key]) + " kb";
+        cell4.innerHTML = '<a href="' + dir + "/" + key + '"><button>Open</button></a>';
+    }
+}
+
+function bytesToKB(bytes) {
+    return (bytes / 1024).toFixed(2);
+}
+
+let lastrow = table.insertRow();
+let singleCell = lastrow.insertCell();
+singleCell.setAttribute('colspan', 4);
+singleCell.style.textAlign = 'center';
+singleCell.innerHTML = '<button>Back</button>';
+
+document.getElementById("table-container").appendChild(table);
+</script>
+</body>
+</html>
